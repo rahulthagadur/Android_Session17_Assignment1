@@ -27,7 +27,6 @@ public class BoundService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, "onBind called...");
         return myBinder;
     }
 
@@ -42,7 +41,6 @@ public class BoundService extends Service {
             @Override
             public void run() {
 //          do the work in a separate thread so main thread is not blocked
-                Log.i(TAG, "Thread running");
                 playMusic();
             }
         });
@@ -52,7 +50,6 @@ public class BoundService extends Service {
     //    called when the service starts from a call to startService()
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "Service started by startService()");
         return START_STICKY;
     }
 
@@ -80,8 +77,6 @@ public class BoundService extends Service {
             player.pause();
         }
     }
-    /*<<<<<<<<<*********the public methods*******************/
-
 
     //    the class used for the client Binder
     public class MyLocalBinder extends Binder {
@@ -98,7 +93,6 @@ public class BoundService extends Service {
     @Override
     public void onDestroy() {
 //        release player and thread
-        Log.i(TAG, "Destroying Service");
         Toast.makeText(this, "Destroying Service...", Toast.LENGTH_SHORT).show();
         player.release();
         player = null;
@@ -107,7 +101,6 @@ public class BoundService extends Service {
         dummy.interrupt();
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Log.i(TAG, "Cancelling notification");
         notificationManager.cancel(NOTIFICATION_ID);
     }
 }

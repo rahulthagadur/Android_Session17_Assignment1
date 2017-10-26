@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 
     //    bind to the service
     private void doBindToService() {
-        Toast.makeText(this, "Binding...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Binding the data ", Toast.LENGTH_SHORT).show();
         if (!isBound) {
             Intent bindIntent = new Intent(this, BoundService.class);
             isBound = bindService(bindIntent, myConnection,
@@ -108,7 +108,6 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
         Toast.makeText(this, "Service Started", Toast.LENGTH_SHORT).show();
-        Log.i(TAG, "MainActivity - onStart - binding...");
 //        bind to the service
         doBindToService();
     }
@@ -117,7 +116,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(TAG, "MainActivity - onStop - unbinding...");
+        Toast.makeText(this, "Service Stopped ", Toast.LENGTH_SHORT).show();
 //        unbind from the service
         doUnbindService();
     }
